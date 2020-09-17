@@ -1,0 +1,75 @@
+<h2> {{title}}</h2>
+
+<mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Beneficiary</ng-template>
+            <mat-form-field class="gap">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="lNameCtrl" required>
+                <div *ngIf="submitted && firstTemplate.lNameCtrl.errors" class="invalid-feedback">
+                    <div *ngIf="firstTemplate.lNameCtrl.errors.required" class="colored"> Last Name is required</div>
+                </div>
+            </mat-form-field>
+            <mat-form-field class="gap">
+                <mat-label>First Name</mat-label>
+                <input matInput formControlName="fNameCtrl">
+            </mat-form-field>
+
+            <mat-form-field class="gap">
+                <mat-label>Title</mat-label>
+                <input matInput formControlName="titleCtrl">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext class="color">Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Adress</ng-template>
+
+            <mat-form-field class="gap">
+                <mat-label>Country</mat-label>
+                <input matInput formControlName="countryCtrl" required>
+                <div *ngIf="submitted && secondtemplate.countryCtrl.errors" class="invalid-feedback">
+                    <div *ngIf="secondtemplate.countryCtrl.errors.required" class="colored"> Country is required</div>
+                </div>
+            </mat-form-field>
+            <mat-form-field class="gap">
+                <mat-label>City</mat-label>
+                <input matInput formControlName="cityCtrl">
+            </mat-form-field>
+
+            <mat-form-field class="gap">
+                <mat-label>Street</mat-label>
+                <input matInput formControlName="streetCtrl">
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious class="color">Back</button>
+                <button mat-button matStepperNext class="color">Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup" (ngSubmit)="onSubmit()">
+            <ng-template matStepLabel>Contactability</ng-template>
+            <mat-form-field class="gap">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="emailCtrl" placeholder="Ex. marlyatou@example.com" required>
+                <div *ngIf="submitted && thirdtemplate.emailCtrl.errors" class="invalid-feedback">
+                    <div *ngIf="thirdtemplate.emailCtrl.errors.required" class="colored"> Email is required</div>
+                </div>
+            </mat-form-field>
+            <mat-form-field class="gap">
+                <mat-label>Telephone</mat-label>
+                <input matInput formControlName="phoneCtrl">
+            </mat-form-field>
+            <mat-checkbox class="color"> Option</mat-checkbox>
+            <div>
+                <button mat-button matStepperPrevious class="color">Back</button>
+                <button type="submit" class="colorgreen">Submit</button>
+            </div>
+        </form>
+    </mat-step>
+</mat-horizontal-stepper>
